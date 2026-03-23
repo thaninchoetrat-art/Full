@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1774169789241",
+    "title": "บ้านเดี่ยว",
+    "price": 0,
+    "oldPrice": 0,
+    "location": " กรุงเทพ",
+    "description": "",
+    "image": "1774169789230_389004151.png",
+    "type": "Condominium",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "landSize": 0,
+    "areaSize": 0,
+    "badge": "Featured",
+    "createBy": null,
+    "status": "pedding",
+    "discount": 0
+  }
+]

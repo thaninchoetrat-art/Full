@@ -11,6 +11,7 @@ const Home = () => {
         const [open , setOpen] = useState(false);
 
         const [properties , setProperties] = useState([]);
+        console.log("My Data:", properties);
 
         useEffect(() => {
             fetchData();
@@ -21,7 +22,7 @@ const Home = () => {
                 const res = await getproperties();     
                 console.log("API", res.data);     
 
-                if(Array.isArray(res.dara)) {
+                if(Array.isArray(res.data)) {
                     setProperties(res.data);
 
                 }else if (Array.isArray(res.data.data)) {
@@ -56,6 +57,7 @@ const Home = () => {
                     onSuccess={fetchData} />
                  )}
             <div className="pb-20">
+               
                 <PropertyList data={properties} />
             </div>
            

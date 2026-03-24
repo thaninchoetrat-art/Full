@@ -19,4 +19,4 @@ const PropertyList = ({data}) => {
 
 };
 
-export default PropertyList
+export default PropertyList;

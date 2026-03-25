@@ -33,5 +33,24 @@ export const createproperty = (data) =>
 export const deleteproperty = (id) => {
   return api.delete(`/properties/${id}`);
 };
+// Admin APIs
+export const getpropertiesAdmin = () => {
+  return api.get("/admin/properties");
+};
 
+export const approvedproperty = (id) => {
+  return api.put(`/admin/approved/${id}`, { status: 'approved' });
+};
+
+export const deletepropertyAdmin = (id) => {
+  return api.delete(`/admin/properties/${id}`); 
+};
+
+export const getUsersAdmin = () => {
+  return api.get(`/admin/users`); 
+};
+
+export const deleteUserAdmin = (id) => {
+  return api.delete(`/admin/users/${id}`); 
+};
 export default api;

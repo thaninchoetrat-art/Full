@@ -12,7 +12,7 @@ const readData = () => {
         } catch { // ถ้า error ให้ return เป็น []
             return [];
         }
-};
+};  
 
 const writeData = (data) => {
         fs.writeFileSync(dataPath, JSON.stringify(data, null , 2)); // เขียนข้อมูลลงไฟล์ (เเปลง object เป็น Json), 2 คือ format ให้สวย
@@ -22,7 +22,10 @@ const writeData = (data) => {
 
 exports.getproperties = (req, res) => {
     const data = readData();     // ดึงข้อมูล ทั้งหมด
-    res.json(data)  // อ่าน json  ส่งกลับ client
+     // อ่าน json  ส่งกลับ client
+     const approvedData = data.filter(item => item.status === "approved"); // กรองข้อมูล เอาเฉพาะรายการที่ได้รับการอนุมัติ
+    
+    res.json(approvedData);  // ส่งข้อมูลที่ผ่านการกรองแล้วกลับไปให้ Client
 }
 
 

@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import { getproperties } from "../Service/api";
 import PropertyList from "../Components/PropertyList";
 import ModalAddProperty from "../Components/ModalAddProperty";
+import SearchBar from "../Components/SearchBar";
 
 
 
@@ -41,6 +42,10 @@ const Home = () => {
     return (
         <div className="bg-white min-h-screen fron-sans">
             <Navbar />
+                <div className="mt-10">
+                    <SearchBar />
+                </div>
+            
             <div className="max-w-7xl mx-auto px-6 py-10 flex justify-between item-end ">
                 <div>
                         <h1 className="text-4xl font-black text-gray-900">Propety</h1>

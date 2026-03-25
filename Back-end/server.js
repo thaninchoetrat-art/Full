@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const app = express();
 const propertyrouters = require("./Routers/propertyrouters");
+const adminRoutes = require("./Routers/adminRoutes");
 
 app.use(cors());
 app.use(express.json());
@@ -13,6 +14,8 @@ app.use("/uploads", express.static("uploads"));
 
 
 app.use("/api/properties", propertyrouters);
+
+app.use("/api/admin", adminRoutes); //Q
 
 const PORT = process.env.PORT || 5000;
 

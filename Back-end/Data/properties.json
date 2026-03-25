@@ -14,7 +14,7 @@
     "areaSize": "22",
     "badge": "Featured",
     "createBy": null,
-    "status": "pedding",
+    "status": "approved",
     "discount": -36
   },
   {
@@ -52,5 +52,23 @@
     "createBy": null,
     "status": "pedding",
     "discount": 81
+  },
+  {
+    "id": "1774426390442",
+    "title": "hanoi",
+    "price": 5000000,
+    "oldPrice": 4000000,
+    "location": "mll",
+    "description": "fesfeaf",
+    "image": "1774426390433_774140197.jpg",
+    "type": "Condominium",
+    "bedrooms": "3",
+    "bathrooms": "3",
+    "landSize": "34",
+    "areaSize": "45",
+    "badge": "Featured",
+    "createBy": null,
+    "status": "approved",
+    "discount": -25
   }
 ]

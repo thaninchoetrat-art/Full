@@ -1,8 +1,5 @@
 import axios from "axios";
-import.meta.env.VITE_API_URL
 
-
-  
 const baseURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const api = axios.create({
@@ -17,7 +14,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-export const getproperties = () => api.get("/properties");
+export const getproperties = (params) => api.get("/properties", { params });
 
 export const getpropertyById = (id) => {
   return api.get(`/properties/${id}`);
@@ -53,4 +50,60 @@ export const getUsersAdmin = () => {
 export const deleteUserAdmin = (id) => {
   return api.delete(`/admin/users/${id}`); 
 };
+
+// User APIs
+export const registerUser = (data) => {
+  return api.post("/users/register", data);
+};
+
+export const loginUser = (data) => {
+  return api.post("/users/login", data);
+};
+
+export const getMeUser = () => {
+  return api.get("/users/me");
+};
+
+// Superadmin APIs
+export const getAllUsersSuperAdmin = () => {
+  return api.get("/superadmin/users");
+};
+
+export const getAllAdminsSuperAdmin = () => {
+  return api.get("/superadmin/admins");
+};
+
+export const getUserBySuperAdmin = (userId) => {
+  return api.get(`/superadmin/user/${userId}`);
+};
+
+export const getStatisticsSuperAdmin = () => {
+  return api.get("/superadmin/statistics");
+};
+
+export const promoteToAdminSuperAdmin = (userId) => {
+  return api.put(`/superadmin/promote/${userId}`);
+};
+
+export const demoteToUserSuperAdmin = (userId) => {
+  return api.put(`/superadmin/demote/${userId}`);
+};
+
+export const deleteUserSuperAdmin = (userId) => {
+  return api.delete(`/superadmin/user/${userId}`);
+};
+
+// Search APIs
+export const searchUsersSuperAdmin = (query, type = null) => {
+  const params = { query };
+  if (type) params.type = type;
+  return api.get("/superadmin/search/users", { params });
+};
+
+export const searchPropertiesSuperAdmin = (query, status = null) => {
+  const params = { query };
+  if (status) params.status = status;
+  return api.get("/superadmin/search/properties", { params });
+};
+
 export default api;

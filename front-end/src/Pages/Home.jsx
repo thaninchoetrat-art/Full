@@ -10,17 +10,19 @@ import SearchBar from "../Components/SearchBar";
 
 const Home = () => {
         const [open , setOpen] = useState(false);
-
         const [properties , setProperties] = useState([]);
+        const [loading, setLoading] = useState(false);
+
         console.log("My Data:", properties);
 
         useEffect(() => {
             fetchData();
         }, []);
 
-       const fetchData = async () => {
+       const fetchData = async (filters = {}) => {
+        setLoading(true);
         try {
-                const res = await getproperties();     
+                const res = await getproperties(filters);     
                 console.log("API", res.data);     
 
                 if(Array.isArray(res.data)) {
@@ -35,6 +37,8 @@ const Home = () => {
                     
         }catch (err) {
             console.error("Fetch Error", err)
+        } finally {
+            setLoading(false);
         }
        }
 
@@ -43,7 +47,7 @@ const Home = () => {
         <div className="bg-white min-h-screen fron-sans">
             <Navbar />
                 <div className="mt-10">
-                    <SearchBar />
+                    <SearchBar onSearch={fetchData} loading={loading} />
                 </div>
             
             <div className="max-w-7xl mx-auto px-6 py-10 flex justify-between item-end ">

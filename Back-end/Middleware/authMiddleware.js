@@ -1,32 +1,36 @@
 // Middleware/authMiddleware.js
 
+const fs = require("fs");
+const path = require("path");
+
 const authMiddleware = (req, res, next) => {
-    // รับ Token จาก Header (รูปแบบ: { authorization: 'Bearer token' })
     const authHeader = req.headers.authorization;
-    
-    // ตรวจสอบว่ามี header และขึ้นต้นด้วยคำว่า Bearer หรือไม่
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return res.status(401).json({ message: "No token provided, authorization denied" });
     }
 
-    // แยกเอาเฉพาะตัว token ออกมา
     const token = authHeader.split(" ")[1];
+    const dataPath = path.join(__dirname, "../Data/users.json");
 
     try {
-        // TODO: หากมีระบบ Login แล้ว ให้ใช้ jsonwebtoken มาตรวจสอบ (jwt.verify)
-        // const jwt = require("jsonwebtoken");
-        // const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        // req.user = decoded;
-        
-        // ถ้าต้องการให้เฉพาะ Admin ใช้ API นี้ได้ (เมื่อทำระบบ Role แล้ว)
-        // if (req.user.role !== 'admin') {
-        //     return res.status(403).json({ message: "Access denied. Admin only." });
-        // }
+        const users = JSON.parse(fs.readFileSync(dataPath));
+        const user = users.find((u) => u.token === token);
+        if (!user) {
+            return res.status(401).json({ message: "Invalid token" });
+        }
 
-        // ให้ผ่านการตรวจสอบไปยัง Controller ถัดไป (ใช้สำหรับการทดสอบเบื้องต้น)
+        const role = user.role || "user";
+        req.user = { id: user.id, email: user.email, username: user.username, role };
+
+        // ถ้าเข้าถึง admin route แต่ไม่ใช่ admin หรือ superadmin ให้ปฏิเสธ
+        if (req.baseUrl.startsWith("/admin") && role !== "admin" && role !== "superadmin") {
+            return res.status(403).json({ message: "Admin access required" });
+        }
+
         next();
     } catch (err) {
-        return res.status(401).json({ message: "Invalid token" });
+        console.error("Auth middleware error:", err);
+        return res.status(500).json({ message: "Server error" });
     }
 };
 

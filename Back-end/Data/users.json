@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "username": "admin",
+    "email": "admin@example.com",
+    "password": "admin123",
+    "role": "admin",
+    "token": "fbm3b9yf4s5mn7klo2v"
+  },
+  {
+    "id": "2",
+    "username": "superadmin",
+    "email": "superadmin@example.com",
+    "password": "superadmin123",
+    "role": "superadmin",
+    "token": "98yq2mwp3rlmn7kfcpk"
+  }
+]

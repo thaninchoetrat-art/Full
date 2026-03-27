@@ -32,7 +32,7 @@
     "areaSize": "33",
     "badge": "Featured",
     "createBy": null,
-    "status": "pedding",
+    "status": "approved",
     "discount": 85
   },
   {
@@ -50,7 +50,7 @@
     "areaSize": "22",
     "badge": "Featured",
     "createBy": null,
-    "status": "pedding",
+    "status": "approved",
     "discount": 81
   },
   {
@@ -70,5 +70,41 @@
     "createBy": null,
     "status": "approved",
     "discount": -25
+  },
+  {
+    "id": "1774529487330",
+    "title": "ะัพะั",
+    "price": 3424,
+    "oldPrice": 2344,
+    "location": "434",
+    "description": "43",
+    "image": null,
+    "type": "House",
+    "bedrooms": "2423",
+    "bathrooms": "242",
+    "landSize": "234",
+    "areaSize": "2423",
+    "badge": "Featured",
+    "createBy": null,
+    "status": "approved",
+    "discount": -46
+  },
+  {
+    "id": "1774529534418",
+    "title": "435",
+    "price": 345,
+    "oldPrice": 345,
+    "location": "34",
+    "description": "",
+    "image": null,
+    "type": "House",
+    "bedrooms": "345",
+    "bathrooms": "4435",
+    "landSize": "345",
+    "areaSize": "345",
+    "badge": "Featured",
+    "createBy": null,
+    "status": "approved",
+    "discount": 0
   }
 ]

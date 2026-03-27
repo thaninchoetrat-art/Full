@@ -1,7 +1,7 @@
 const PropertyCard = ({property}) => {
     const imageUrl = property?.image
     ? `http://localhost:5000/uploads/${property.image}`
-    : "";
+    : null;
 
     const discount = property?.oldPrice > 0
                 ? Math.round(
@@ -14,9 +14,15 @@ const PropertyCard = ({property}) => {
                             {/*image */}
 
                         <div className="relative h-60 overflow-hidden">
-                                <img src={imageUrl} 
-                                alt="property"
-                                className="w-full h-full object-cover group-hover:scale-110 transition duration-500 " />
+                                {imageUrl ? (
+                                    <img src={imageUrl} 
+                                    alt="property"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500 " />
+                                ) : (
+                                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                                        <span className="text-gray-500 text-sm">No Image</span>
+                                    </div>
+                                )}
                         
                             {/* badge */}
                             <div className="absolute top-4 left-4 bg-amber-400 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow ">

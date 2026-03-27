@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
 
 function Navbar() {
-    // ตรวจสอบสถานะ Admin โดยเช็คจาก token ใน localStorage 
-    // (อ้างอิงจากไฟล์ api.js ที่ใช้ "admin-secret-token" เป็นค่าเริ่มต้น)
-    const isAdmin = localStorage.getItem("token") === "admin-secret-token";
+    const { user, logout } = useAuth();
+    const isAdmin = user?.role === "admin";
+    const isSuperAdmin = user?.role === "superadmin";
 
     return (
         <nav className="bg-black p-6 flex justify-between items-center shadow-lg">
@@ -13,13 +14,37 @@ function Navbar() {
                 </Link>
             </div>
             
-            <div className="flex gap-6 items-center">
+            <div className="flex gap-6 items-center flex-wrap">
                 <Link to="/" className="text-white hover:text-gray-300 font-medium">
                     หน้าแรก
                 </Link>
-                
-                {/*Admin เหน เท่านั้น */}
-                {isAdmin && (
+
+                {user ? (
+                    <>
+                        <span className="text-white font-medium"> {user.username || user.email}</span>
+                        <button
+                            onClick={logout}
+                            className="text-black bg-white px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition"
+                        >
+                            ออกจากระบบ
+                        </button>
+                    </>
+                ) : (
+                    <Link to="/login" className="text-white hover:text-gray-300 font-medium border border-white px-4 py-2 rounded-lg transition">
+                        ลงชื่อเข้าใช้
+                    </Link>
+                )}
+
+                {isSuperAdmin && (
+                    <Link 
+                        to="/superadmin" 
+                        className="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition duration-300"
+                    >
+                        Superadmin Dashboard
+                    </Link>
+                )}
+
+                {isAdmin && !isSuperAdmin && (
                     <Link 
                         to="/admin" 
                         className="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition duration-300"
